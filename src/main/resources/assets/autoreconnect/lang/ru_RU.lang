@@ -1,0 +1,7 @@
+gui.button.cancel0=Отмена
+gui.button.reconnect=Переподключение через 
+gui.string.attemp=Попытка #
+gui.string.failedToConnect=Время подключения вышло. Повторяю попытку
+chat.string.enabled=Auto Reconnect включён. IP/Port: 
+chat.string.notEnabled=Auto Reconnect не работает в одиночной игре
+config.string.delay=Задержка перед переподключением

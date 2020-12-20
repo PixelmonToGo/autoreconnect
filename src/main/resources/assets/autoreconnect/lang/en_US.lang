@@ -1,0 +1,7 @@
+gui.button.cancel0=Cancel
+gui.button.reconnect=Reconnect in 
+gui.string.attemp=Attemp #
+gui.string.failedToConnect=The connection time has expired. Retrying
+chat.string.enabled=Auto Reconnect enabled. IP/Port: 
+chat.string.notEnabled=Auto Reconnect does not work in singleplayer
+config.string.delay=Reconnect delay
