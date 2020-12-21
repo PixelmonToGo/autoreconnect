@@ -1,10 +1,10 @@
 package com.clasher113.autoreconnect;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class FailedToConnectScreen extends GuiScreen{
 	
