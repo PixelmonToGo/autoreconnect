@@ -69,7 +69,7 @@ public class DisconnectedScreen extends GuiScreen{
 		if (button.id == 2){
 			MainClass.onGuiDisconnected = false;
 			MainClass.syncConfig();
-			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host));
+			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host, false));
 		}
 	}
 	@SuppressWarnings("rawtypes")
@@ -77,7 +77,7 @@ public class DisconnectedScreen extends GuiScreen{
 		if(MainClass.reconnectDelay == 0){
 			MainClass.onGuiDisconnected = false;
 			MainClass.syncConfig();
-			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host));
+			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host, false));
 		}
 		if(MainClass.reconnectDelayUpdater <= 0){
 			MainClass.reconnectDelay -=1;

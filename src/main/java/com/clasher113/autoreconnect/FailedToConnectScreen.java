@@ -15,7 +15,7 @@ public class FailedToConnectScreen extends GuiScreen{
 			MainClass.syncConfig();
 			MainClass.connectingTimer = 300;
 			MainClass.onGuiConnecting = false;
-			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host));
+			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host, false));
 		}
 		super.drawScreen(par1, par2, par3);
 	}
