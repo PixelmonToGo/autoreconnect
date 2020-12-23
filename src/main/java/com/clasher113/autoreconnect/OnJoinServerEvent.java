@@ -4,12 +4,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 public class OnJoinServerEvent {
 	public static String host;
@@ -18,19 +18,19 @@ public class OnJoinServerEvent {
 	@SubscribeEvent
 	public void onJoinServerMessage(EntityJoinWorldEvent event){
 		if(MainClass.isEnabled == false){
-			if(event.entity instanceof EntityPlayer){
+			if(event.getEntity() instanceof EntityPlayer){
 				if(FMLCommonHandler.instance().getEffectiveSide()== Side.CLIENT){
-					EntityPlayer player = (EntityPlayer) event.entity;
+					EntityPlayer player = (EntityPlayer) event.getEntity();
 						if (Minecraft.getMinecraft().isSingleplayer() == false){
 							MainClass.tryNumber = 0;
 							MainClass.connectingTimer = 300;
 							MainClass.onGuiConnecting = false;
 							host = Minecraft.getMinecraft().getCurrentServerData().serverIP;
-							player.addChatMessage(new ChatComponentText(I18n.format("chat.string.enabled") + host));
+							player.addChatMessage(new TextComponentString(I18n.format("chat.string.enabled") + host));
 							MainClass.isEnabled = true;
 						}
 						else{
-							player.addChatMessage(new ChatComponentText(I18n.format("chat.string.notEnabled")));
+							player.addChatMessage(new TextComponentString(I18n.format("chat.string.notEnabled")));
 							MainClass.isEnabled = true;
 							}
 				}

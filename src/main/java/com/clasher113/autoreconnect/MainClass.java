@@ -3,10 +3,11 @@ package com.clasher113.autoreconnect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 public class MainClass {
 		private GuiScreen guiCache;
-		public IChatComponent errorDetail;
+		public ITextComponent errorDetail;
 		public static Configuration configFile;
 		public static boolean onGuiDisconnected = false;
 		public static boolean onGuiConnecting = false;
@@ -53,7 +54,7 @@ public class MainClass {
 		}
 		@SubscribeEvent
 		public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event){
-			 if(event.modID.equals("autoreconnect")){
+			 if(event.getModID().equals("autoreconnect")){
 		       syncConfig();
 			 }
 		}
@@ -84,7 +85,7 @@ public class MainClass {
 						if (guiCache instanceof GuiConnecting && OnJoinServerEvent.host != null){
 							onGuiConnecting = true;
 						}
-						if (guiCache instanceof GuiMainMenu)
+						if (guiCache instanceof GuiMultiplayer)
 							isEnabled = false;
 				}
 			}		
