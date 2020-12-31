@@ -26,11 +26,11 @@ public class OnJoinServerEvent {
 							MainClass.connectingTimer = 300;
 							MainClass.onGuiConnecting = false;
 							host = Minecraft.getMinecraft().getCurrentServerData().serverIP;
-							player.addChatMessage(new TextComponentString(I18n.format("chat.string.enabled") + host));
+							player.sendMessage(new TextComponentString(I18n.format("chat.string.enabled") + host));
 							MainClass.isEnabled = true;
 						}
 						else{
-							player.addChatMessage(new TextComponentString(I18n.format("chat.string.notEnabled")));
+							player.sendMessage(new TextComponentString(I18n.format("chat.string.notEnabled")));
 							MainClass.isEnabled = true;
 							}
 				}

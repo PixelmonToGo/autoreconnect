@@ -9,6 +9,7 @@ import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -42,11 +43,12 @@ public class MainClass {
 		
 		@EventHandler
 	    public void preInit(FMLPreInitializationEvent event) {
-			 MinecraftForge.EVENT_BUS.register(new OnJoinServerEvent());
-			 FMLCommonHandler.instance().bus().register(this);
-			 configFile = new Configuration(event.getSuggestedConfigurationFile());
-		     syncConfig();
+			MinecraftForge.EVENT_BUS.register(new OnJoinServerEvent());
+			FMLCommonHandler.instance().bus().register(this);
+			configFile = new Configuration(event.getSuggestedConfigurationFile());
+		    syncConfig();
 		}
+		
 		public static void syncConfig() {
 			reconnectDelay = configFile.getInt(I18n.format("config.string.delay"), Configuration.CATEGORY_GENERAL, reconnectDelay, 5, Integer.MAX_VALUE, "An Integer!");
 		    if(configFile.hasChanged())
