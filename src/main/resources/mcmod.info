@@ -2,11 +2,11 @@
   "modid": "autoreconnect",
   "name": "Auto Reconnect",
   "description": "",
-  "version": "1.1.0",
-  "mcversion": "1.11.2",
+  "version": "1.3.0",
+  "mcversion": "1.12.1",
   "logoFile": "",
   "url": "",
   "updateJSON": "",
-  "authorList": ["clasher113"],
+  "authorList": ["clasher113", "chipwolf"],
   "credits": ""
 }]
