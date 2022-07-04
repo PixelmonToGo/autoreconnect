@@ -1,33 +1,33 @@
 package com.clasher113.autoreconnect;
 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.TextComponentBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 @Mod(modid = "autoreconnect",
 	name = "Auto Reconnect",
 	version ="1.1.0",
 	useMetadata = true,
-	guiFactory = "com.clasher113.autoreconnect.ConfigGuiFactory"
-	)
+	guiFactory = "com.clasher113.autoreconnect.ConfigGuiFactory",
+	clientSideOnly = true
+)
 
 public class MainClass {
 		private GuiScreen guiCache;
-		public IChatComponent errorDetail;
+		public TextComponentBase errorDetail;
 		public static Configuration configFile;
 		public static boolean onGuiDisconnected = false;
 		public static boolean onGuiConnecting = false;
@@ -39,7 +39,7 @@ public class MainClass {
 
 		Minecraft mc = Minecraft.getMinecraft();
 		
-		@EventHandler
+		@Mod.EventHandler
 	    public void preInit(FMLPreInitializationEvent event) {
 			 MinecraftForge.EVENT_BUS.register(new OnJoinServerEvent());
 			 FMLCommonHandler.instance().bus().register(this);
@@ -53,17 +53,17 @@ public class MainClass {
 		}
 		@SubscribeEvent
 		public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event){
-			 if(event.modID.equals("autoreconnect")){
+			 if(event.getModID().equals("autoreconnect")){
 		       syncConfig();
 			 }
 		}
 		@SubscribeEvent
 		public void onClientTick(TickEvent.ClientTickEvent event){
-				if(event.phase == Phase.START){
-					if(onGuiDisconnected == true && reconnectDelay != 0){
+				if(event.phase == TickEvent.Phase.START){
+					if(onGuiDisconnected && reconnectDelay != 0){
 						reconnectDelayUpdater -= 1;
 					}
-					if (onGuiConnecting == true){
+					if (onGuiConnecting){
 						connectingTimer -= 1;
 						if (connectingTimer <= 0){
 							FailedToConnectScreen failedToConnectScreen = new FailedToConnectScreen();
