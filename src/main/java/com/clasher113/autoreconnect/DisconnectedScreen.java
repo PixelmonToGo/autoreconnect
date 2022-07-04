@@ -41,8 +41,8 @@ public class DisconnectedScreen extends GuiScreen{
 		MainClass.isEnabled = false;
 		this.buttonList.clear();
 		//this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120, I18n.format("gui.toMenu")));
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 162, I18n.format("gui.button.cancel0")));
-		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 141, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 2 + 62, I18n.format("gui.button.cancel0")));
+		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 + 41, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
 		this.list = this.fontRenderer.listFormattedStringToWidth(errorDetail.getFormattedText(), this.width - 50);
 	}
 	protected void actionPerformed(GuiButton button) {
@@ -71,7 +71,7 @@ public class DisconnectedScreen extends GuiScreen{
 			MainClass.reconnectDelay -=1;
 			MainClass.reconnectDelayUpdater = 20;
 			this.buttonList.remove(1);
-			this.buttonList.add(new GuiButton(1, this.width /2 - 100, this.height / 4 + 141, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
+			this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 + 41, I18n.format("gui.button.reconnect") + " " + MainClass.reconnectDelay + "..."));
 		}
 		this.drawDefaultBackground();
 
