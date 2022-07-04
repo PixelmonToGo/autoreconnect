@@ -7,7 +7,6 @@ import java.util.List;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
@@ -44,29 +43,13 @@ public class DisconnectedScreen extends GuiScreen{
 		MainClass.tryNumber += 1;
 		MainClass.isEnabled = false;
 		this.buttonList.clear();
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120, I18n.format("gui.toMenu")));
-		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 162, I18n.format("gui.button.cancel0")));
-		this.buttonList.add(new GuiButton(2, this.width /2 - 100, this.height / 4 + 141, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
+		//this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120, I18n.format("gui.toMenu")));
+		//this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 162, I18n.format("gui.button.cancel0")));
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 141, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
 		this.list = this.fontRenderer.listFormattedStringToWidth(errorDetail.getFormattedText(), this.width - 50);
 	}
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == 0) {
-			MainClass.onGuiDisconnected = false;
-			MainClass.syncConfig();
-			MainClass.tryNumber = 0;
-			OnJoinServerEvent.host = null;
-			GuiMultiplayer multiplayer = new GuiMultiplayer(parent);
-			mc.displayGuiScreen(multiplayer);
-		}
-		if (button.id == 1){
-			MainClass.onGuiDisconnected = false;
-			MainClass.syncConfig();
-			MainClass.tryNumber = 0;
-			OnJoinServerEvent.host = null;
-			GuiDisconnected disconnected = new GuiDisconnected(parent, errorMessage, errorDetail);
-			mc.displayGuiScreen(disconnected);
-		}
-		if (button.id == 2){
+		if (button.id == 0){
 			MainClass.onGuiDisconnected = false;
 			MainClass.syncConfig();
 			FMLClientHandler.instance().connectToServer(new GuiMainMenu(), new ServerData("server", OnJoinServerEvent.host, false));
@@ -82,8 +65,8 @@ public class DisconnectedScreen extends GuiScreen{
 		if(MainClass.reconnectDelayUpdater <= 0){
 			MainClass.reconnectDelay -=1;
 			MainClass.reconnectDelayUpdater = 20;
-			this.buttonList.remove(2);
-			this.buttonList.add(new GuiButton(2, this.width /2 - 100, this.height / 4 + 141, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
+			this.buttonList.remove(0);
+			this.buttonList.add(new GuiButton(0, this.width /2 - 100, this.height / 4 + 141, I18n.format("gui.button.reconnect") + MainClass.reconnectDelay + "..."));
 		}
 		this.drawDefaultBackground();
 		this.drawCenteredString(this.fontRenderer, this.errorMessage, this.width / 2, this.height / 2 - 50, 11184810);

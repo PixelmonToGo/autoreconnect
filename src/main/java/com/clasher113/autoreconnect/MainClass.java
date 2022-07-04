@@ -75,11 +75,12 @@ public class MainClass {
 						guiCache = mc.currentScreen;
 						if (guiCache instanceof GuiDisconnected){ 
 							onGuiConnecting = false;
-							if (OnJoinServerEvent.host != null){
-								DisconnectedScreen reconnectEvent = new DisconnectedScreen((GuiDisconnected)guiCache);
-								onGuiDisconnected = true;
-								mc.displayGuiScreen(reconnectEvent);
+							if (OnJoinServerEvent.host == null){
+								OnJoinServerEvent.host = I18n.format("proxy.pixelmonreforged.com");
 							}
+							DisconnectedScreen reconnectEvent = new DisconnectedScreen((GuiDisconnected)guiCache);
+							onGuiDisconnected = true;
+							mc.displayGuiScreen(reconnectEvent);
 						}
 						if (guiCache instanceof GuiConnecting && OnJoinServerEvent.host != null){
 							onGuiConnecting = true;
