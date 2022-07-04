@@ -5,4 +5,6 @@ gui.string.failedToConnect=연결 시간이 만료되었습니다. 재시도 중
 chat.string.enabled=자동 재연결이 활성화되었습니다. IP/포트:
 chat.string.notEnabled=싱글 플레이에서는 자동 재연결이 작동하지 않습니다.
 config.string.delay=재연결 지연
+reconnect.reason.title=PixelmonToGo 네트워크 대기열
+reconnect.reason.message=곧 연결됩니다, 잠시만 기다려 주십시오...
 proxy.pixelmonreforged.com=proxy-apac.pixelmonreforged.com
