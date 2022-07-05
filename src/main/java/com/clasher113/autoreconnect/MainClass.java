@@ -63,7 +63,7 @@ public class MainClass {
 					if(onGuiDisconnected && reconnectDelay != 0){
 						reconnectDelayUpdater -= 1;
 					}
-					if (onGuiConnecting){
+					if (onGuiConnecting && mc.currentScreen instanceof GuiConnecting){
 						connectingTimer -= 1;
 						if (connectingTimer <= 0){
 							FailedToConnectScreen failedToConnectScreen = new FailedToConnectScreen();
